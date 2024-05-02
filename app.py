@@ -2,6 +2,8 @@ import flask as fk
 import logging
 import sqlite3
 import time
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import text
 
 app = fk.Flask(__name__, '/static')
 connection = sqlite3.connect("total.db")
@@ -17,6 +19,12 @@ def root():
             'home.html',
             arts=[],
             error=""
+        )
+    else:
+        return fk.render_template(
+            'home.html',
+            arts = [],
+            error = ""
         )
 #@app.route('/check', methods=["GET", "POST"])
 
