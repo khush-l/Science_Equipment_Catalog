@@ -55,7 +55,7 @@ def root():
             return render_template('home.html', items=items)
       
 #this function gets called when you clock on edit and the id of the item is passed and it returns the add/edit page
-@app.route('/item_id/')
+@app.route('/item_id')
 def item(item_id):
     item = Items.query.get_or_404(item_id)
     return render_template('add_edit.html', item=item)
