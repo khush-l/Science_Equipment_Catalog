@@ -34,5 +34,6 @@ def root():
     if method == "GET":
         items = Items.query.all()
         return render_template('home.html', items=items)
+    
 #@app.route('/check', methods=["GET", "POST"])
 
