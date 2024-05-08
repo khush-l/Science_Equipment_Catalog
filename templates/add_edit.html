@@ -1,4 +1,19 @@
 {%extends 'base.html'%}
 {%block title%}Edit Catalogue{% endblock %}
 {%block bodycontent%}
+<h1>Update</h1>
+<form method="post">
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" value="{{item.title}}"/>
+        <label>Description</label>
+        <textarea name="description">{{item.description}}</textarea>
+        <label>Location</label>
+        <input type="text" name="location" value="{{item.location}}"/>
+        <label>Quantity</label>
+        <input type="text" name="quantity" value="{{item.quantity}}"/>
+    </div>
+    <input type="submit"/>
+</form>
+
 {% endblock %}

@@ -2,12 +2,16 @@
 {%block title%}Equipment Catalogue{% endblock %}
 {%block bodycontent%}
 <div class="itemList">
-    <div class="item firstItem even">
-        <div class="itemName">Item 1</div>
-        <div class="description"></div>
-        <div class="quantity"></div>
-        <div class="location"></div>
-        <div class="lastEdit"></div>
+    {% for item in items %}
+    <div class="item">
+        <div class="itemName">{{ item.title }}</div>
+        <div class="description">{{ item.description }}</div>
+        <div class="quantity">{{ item.quantity }}</div>
+        <div class="location">{{ item.location }}</div>
+        <div class="lastEdit">{{ item.last_updated }}</div>
+        <a href="{{ url_for('item', item_id=item.id) }}">Edit</a>
+    </div>
+    {% endfor %}    
     </div>
     <div class="item odd">
     </div>
