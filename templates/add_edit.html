@@ -2,12 +2,12 @@
 {%block title%}Edit Catalogue{% endblock %}
 {%block bodycontent%}
 <h1>Update</h1>
-<form method="post", action= "/">
+<form method="post">
     <div>
         <label>Title</label>
         <input type="text" name="title" value="{{item.title}}"/>
         <label>Description</label>
-        <textarea name="description" value="{{item.description}}"></textarea>
+        <textarea name="description">{{item.description}}</textarea>
         <label>Location</label>
         <input type="text" name="location" value="{{item.location}}"/>
         <label>Quantity</label>
