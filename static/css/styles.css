@@ -21,6 +21,7 @@ body{
 .firstItem{
    border-top-left-radius: 3vh;
    border-top-right-radius: 3vh;
+   background-color: #D9D9D9;
 }
 .lastItem{
    border-bottom-left-radius: 3vh;
@@ -39,6 +40,10 @@ body{
    total height = 10vh*/
    width: 10vw;
    height: 5vh;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+
    float: left;
    padding-left: 3.5vw;
    margin-right: 1.5vw;
@@ -55,6 +60,9 @@ body{
    height: 8vh;
    float: left;
    font-size: 1.5vh;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
    
    margin-top: .5vh;
    margin-bottom:.5vh;
@@ -74,6 +82,9 @@ body{
    height: 8vh;
    float: left;
    font-size: 2vh;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: hidden;
 
    margin-top: .5vh;
    margin-bottom:.5vh;
@@ -93,6 +104,9 @@ body{
    height: 3vh;
    float: left;
    font-size: 1.5vh;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: hidden;
 
    margin-top: .5vh;
    margin-bottom:.5vh;
@@ -112,6 +126,9 @@ body{
    height: 3vh;
    float: left;
    font-size: 1.5vh;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: hidden;
 
    margin-top: .5vh;
    margin-bottom:.5vh;
