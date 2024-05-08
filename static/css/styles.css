@@ -1,52 +1,125 @@
 body{
     background-color: #fff;
     font-family: inter;
- }
+}
  
  
- .itemList{
-    width: 80vw;
-    min-height: 12vh;
-    margin-left: 10vw;
-    margin-top: 20vh;
- }
+.itemList{
+   width: 80vw;
+   min-height: 12vh;
+   margin-left: 10vw;
+   margin-top: 20vh;
+}
  
  
- .item{
-    width: auto;
-    height: 10vh;
- }
+.item{
+   width: auto;
+   height: 10vh;
+}
  
  
- .firstItem{
-    border-top-left-radius: 3vh;
-    border-top-right-radius: 3vh;
- }
- .lastItem{
-    border-bottom-left-radius: 3vh;
-    border-bottom-right-radius: 3vh;
- }
+.firstItem{
+   border-top-left-radius: 3vh;
+   border-top-right-radius: 3vh;
+}
+.lastItem{
+   border-bottom-left-radius: 3vh;
+   border-bottom-right-radius: 3vh;
+}
+.even{
+   background-color: #D9D9D9;
+}
+.odd{
+   background-color: #fff;
+} 
+
+
+.itemName{
+   /*total width = 15vw
+   total height = 10vh*/
+   width: 10vw;
+   height: 5vh;
+   float: left;
+   padding-left: 3.5vw;
+   margin-right: 1.5vw;
+   padding-top: 2.5vh;
+   padding-bottom: 2.5vh;
+   font-size: 4vh;
+   /*background-color: rebeccapurple;*/
+}
  
- 
- .even{
-    background-color: #D9D9D9;
- }
- 
- 
- .odd{
-    background-color: #fff;
- }
- 
- 
- .itemName{
-    font-size: 4vh;
-    padding-top: 2.5vh;
-    padding-left: 5vw;
-    padding-bottom: 2.5vh;
- }
- 
- 
- .description{
-    font-size: 2vh;
- }
- 
+.description{
+   /*total width = 30vw
+   total height = 10vh*/
+   width: 28vw;
+   height: 8vh;
+   float: left;
+   font-size: 1.5vh;
+   
+   margin-top: .5vh;
+   margin-bottom:.5vh;
+   margin-left: .7vw;
+   margin-right: .7vw;
+   border-top: .5vh solid black;
+   border-bottom: .5vh solid black;
+   border-left: .3vw solid black;
+   border-right: .3vw solid black;
+   border-radius: .5vh;
+}
+
+.quantity{
+   /*total width = 10vw
+   total height = 10vh*/
+   width: 8vw;
+   height: 8vh;
+   float: left;
+   font-size: 2vh;
+
+   margin-top: .5vh;
+   margin-bottom:.5vh;
+   margin-left: .7vw;
+   margin-right: .7vw;
+   border-top: .5vh solid black;
+   border-bottom: .5vh solid black;
+   border-left: .3vw solid black;
+   border-right: .3vw solid black;
+   border-radius: .5vh;
+}
+
+.location{
+   /*total width = 18vw
+   total height = 50vh*/
+   width: 15vw;
+   height: 3vh;
+   float: left;
+   font-size: 1.5vh;
+
+   margin-top: .5vh;
+   margin-bottom:.5vh;
+   margin-left: .7vw;
+   margin-right: .7vw;
+   border-top: .5vh solid black;
+   border-bottom: .5vh solid black;
+   border-left: .3vw solid black;
+   border-right: .3vw solid black;
+   border-radius: .5vh;
+}
+
+.lastEdit{
+   /*total width = 18vw
+   total height = 50vh*/
+   width: 15vw;
+   height: 3vh;
+   float: left;
+   font-size: 1.5vh;
+
+   margin-top: .5vh;
+   margin-bottom:.5vh;
+   margin-left: .7vw;
+   margin-right: .7vw;
+   border-top: .5vh solid black;
+   border-bottom: .5vh solid black;
+   border-left: .3vw solid black;
+   border-right: .3vw solid black;
+   border-radius: .5vh;
+}
