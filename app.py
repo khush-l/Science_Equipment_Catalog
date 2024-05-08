@@ -55,9 +55,25 @@ def root():
             return render_template('home.html', items=items)
       
 #this function gets called when you clock on edit and the id of the item is passed and it returns the add/edit page
-@app.route('/item_id')
+@app.route('/item/<int:item_id>', methods=["GET", "POST"])
 def item(item_id):
     item = Items.query.get_or_404(item_id)
+    if request.method == 'POST':
+        title = request.form["title"]
+        location = request.form["location"]
+        description = request.form["description"]
+        quantity = request.form["quantity"]
+        error = ""
+        if title == "" or location == "":
+            error = "Please provide both a title and a location"
+            return update_post(title=title, location=location, description=description, quantity=quantity, error=error)
+        else:
+            item.title = title
+            item.location = location
+            item.description = description
+            item.quantity = quantity
+            db.session.commit()
+            return redirect(url_for('root'))
     return render_template('add_edit.html', item=item)
 
 
