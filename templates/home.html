@@ -4,7 +4,7 @@
 <div class="navbar">
     <a href="{{ url_for('root') }}">Browse Items</a>
     <a href="{{ url_for('add_item') }}">Add an Item</a>
-    <button disabled>Login</button>
+    <a href="{{ url_for('root') }}">Login</a>
 </div>
 <div class="itemList">
     {% for index, item, is_even in items %}
@@ -14,7 +14,7 @@
         <div class="quantity">{{ item.quantity }}</div>
         <div class="location">{{ item.location }}</div>
         <div class="lastEdit">{{ item.last_updated }}</div>
-        <a href="{{ url_for('item', item_id=item.id) }}">Update</a>
+        <a href="{{ url_for('item', item_id=item.id) }}"><img src = ../imgs/editIcon.png alt = "Edit"></a>
     </div>
     {% endfor %}    
 </div> 
