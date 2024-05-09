@@ -4,7 +4,7 @@
 <div class="navbar">
     <a href="{{ url_for('root') }}">Browse Items</a>
     <a href="{{ url_for('add_item') }}">Add an Item</a>
-    <button disabled>Login</button>
+    <a href="{{ url_for('root') }}">Login</a>
 </div>
 <div class="itemList">
     {% for index, item, is_even in items %}
