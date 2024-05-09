@@ -7,8 +7,8 @@
     <button disabled>Login</button>
 </div>
 <div class="itemList">
-    {% for item in items %}
-    <div class="item">
+    {% for index, item, is_even in items %}
+    <div class="item {% if is_even %}even{% else %}odd{% endif %} {% if index == 0 %}firstItem{% endif %} {% if index == items|length-1 %}lastItem{% endif %}">
         <div class="itemName">{{ item.title }}</div>
         <div class="description">{{ item.description }}</div>
         <div class="quantity">{{ item.quantity }}</div>
@@ -17,17 +17,5 @@
         <a href="{{ url_for('item', item_id=item.id) }}">Update</a>
     </div>
     {% endfor %}    
-    <div class="item odd">
-    </div>
-    <div class="item even">
-    </div>
-    <div class="item odd">
-    </div>
-    <div class="item even">
-    </div>
-    <div class="item odd">
-    </div>
-    <div class="item lastItem even">
-    </div>
 </div> 
 {% endblock %}

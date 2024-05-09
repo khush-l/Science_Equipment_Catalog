@@ -38,7 +38,8 @@ def root():
     method = request.method
     if method == "GET":
         items = Items.query.all()
-        return render_template('home.html', items=items)
+        processed_items = [(index, item, index % 2 == 0) for index, item in enumerate(items, start=0)]
+        return render_template('home.html', items=processed_items)
     else:
         title = request.form["title"]
         location = request.form["location"]
