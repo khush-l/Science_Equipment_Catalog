@@ -2,18 +2,30 @@
 {%block title%}Edit Catalogue{% endblock %}
 {%block bodycontent%}
 <h1>Update</h1>
-<form method="post">
-    <div>
-        <label>Title</label>
-        <input type="text" name="title" value="{{item.title}}"/>
-        <label>Description</label>
-        <textarea name="description">{{item.description}}</textarea>
-        <label>Location</label>
-        <input type="text" name="location" value="{{item.location}}"/>
-        <label>Quantity</label>
-        <input type="text" name="quantity" value="{{item.quantity}}"/>
-    </div>
-    <input type="submit"/>
-</form>
+<div class="form-container">
+    <h2>Add New Item</h2>
+    <form method="post">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" name="location" id="location" required>
+        </div>
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="text" name="quantity" id="quantity">
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
 
 {% endblock %}

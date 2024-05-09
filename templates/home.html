@@ -1,11 +1,6 @@
 {%extends 'base.html'%}
 {%block title%}Equipment Catalogue{% endblock %}
 {%block bodycontent%}
-<div class="navbar">
-    <a href="{{ url_for('root') }}">Browse Items</a>
-    <a href="{{ url_for('add_item') }}">Add an Item</a>
-    <a href="{{ url_for('root') }}">Login</a>
-</div>
 <div class="itemList">
     {% for index, item, is_even in items %}
     <div class="item {% if is_even %}even{% else %}odd{% endif %} {% if index == 0 %}firstItem{% endif %} {% if index == items|length-1 %}lastItem{% endif %}">

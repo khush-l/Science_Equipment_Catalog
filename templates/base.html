@@ -10,6 +10,11 @@
   
 </head>
 <body>
+  <div class="navbar">
+    <a href="{{ url_for('root') }}">Browse Items</a>
+    <a href="{{ url_for('add_item') }}">Add an Item</a>
+    <a href="{{ url_for('root') }}">Login</a>
+</div>
   {%block bodycontent%}{% endblock %}
 </body>
 </html>
