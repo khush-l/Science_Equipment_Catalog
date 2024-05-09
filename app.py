@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, url_for, redirect
 import logging
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from sqlalchemy import desc
 import datetime
 
 
@@ -37,7 +38,8 @@ def root():
     method = request.method
     if method == "GET":
         items = Items.query.all()
-        return render_template('home.html', items=items)
+        processed_items = [(index, item, index % 2 == 0) for index, item in enumerate(items, start=0)]
+        return render_template('home.html', items=processed_items)
     else:
         title = request.form["title"]
         location = request.form["location"]
@@ -76,4 +78,26 @@ def item(item_id):
             return redirect(url_for('root'))
     return render_template('add_edit.html', item=item)
 
-
+@app.route('/add_item', methods=["GET", "POST"])
+def add_item():
+    if request.method == 'POST':
+        title = request.form["title"]
+        location = request.form["location"]
+        description = request.form["description"]
+        quantity = request.form["quantity"]
+        error = ""
+        if title == "" or location == "":
+            error = "Please provide both a title and a location"
+            return update_post(title=title, location=location, description=description, quantity=quantity, error=error)
+        else:
+            max_id_item = Items.query.order_by(desc(Items.id)).first()
+            if max_id_item:
+                next_id = max_id_item.id + 1
+            else:
+                next_id = 1
+            last_updated = datetime.datetime.now().replace(microsecond=0)
+            new_item = Items(id=next_id, title=title, description=description, location=location, last_updated=last_updated, quantity=quantity)
+            db.session.add(new_item)
+            db.session.commit()
+            return redirect(url_for('root'))
+    return render_template('add_edit.html', item=Items())
