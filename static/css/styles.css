@@ -125,10 +125,11 @@ body{
    width: 15vw;
    height: 3vh;
    float: left;
-   font-size: 1.5vh;
+   font-size: 1.2vh;
    white-space: nowrap;
    overflow: hidden;
    text-overflow: hidden;
+   color: grey;
 
    margin-top: .5vh;
    margin-bottom:.5vh;
@@ -140,8 +141,9 @@ body{
    border-right: .3vw solid black;
    border-radius: .5vh;
 }
+
 .navbar {
-   background-color: #333;
+   background-color: #0a2240;
    overflow: hidden;
    position: fixed;
    top: 0;

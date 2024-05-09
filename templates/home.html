@@ -13,7 +13,7 @@
         <div class="description">{{ item.description }}</div>
         <div class="quantity">{{ item.quantity }}</div>
         <div class="location">{{ item.location }}</div>
-        <div class="lastEdit">{{ item.last_updated }}</div>
+        <div class="lastEdit">Last Edited: {{ item.last_updated }}</div>
         <a href="{{ url_for('item', item_id=item.id) }}"><img src = ../imgs/editIcon.png alt = "Edit"></a>
     </div>
     {% endfor %}    
