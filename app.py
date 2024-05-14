@@ -56,27 +56,6 @@ def root():
             items = Items.query.all()
             return render_template('home.html', items=items)
       
-#this function gets called when you clock on edit and the id of the item is passed and it returns the add/edit page
-@app.route('/item/<int:item_id>', methods=["GET", "POST"])
-def item(item_id):
-    item = Items.query.get_or_404(item_id)
-    if request.method == 'POST':
-        title = request.form["title"]
-        location = request.form["location"]
-        description = request.form["description"]
-        quantity = request.form["quantity"]
-        error = ""
-        if title == "" or location == "":
-            error = "Please provide both a title and a location"
-            return update_post(title=title, location=location, description=description, quantity=quantity, error=error)
-        else:
-            item.title = title
-            item.location = location
-            item.description = description
-            item.quantity = quantity
-            db.session.commit()
-            return redirect(url_for('root'))
-    return render_template('add_edit.html', item=item)
 
 @app.route('/add_item', methods=["GET", "POST"])
 def add_item():
@@ -88,16 +67,32 @@ def add_item():
         error = ""
         if title == "" or location == "":
             error = "Please provide both a title and a location"
-            return update_post(title=title, location=location, description=description, quantity=quantity, error=error)
+            return render_template("add_item.html", error=error)
         else:
-            max_id_item = Items.query.order_by(desc(Items.id)).first()
-            if max_id_item:
-                next_id = max_id_item.id + 1
-            else:
-                next_id = 1
             last_updated = datetime.datetime.now().replace(microsecond=0)
-            new_item = Items(id=next_id, title=title, description=description, location=location, last_updated=last_updated, quantity=quantity)
+            new_item = Items(title=title, description=description, location=location, last_updated=last_updated, quantity=quantity)
             db.session.add(new_item)
             db.session.commit()
             return redirect(url_for('root'))
-    return render_template('add_edit.html', item=Items())
+    return render_template('add_item.html', error="")
+
+@app.route('/edit_item/<int:item_id>', methods=["GET", "POST"])
+def edit_item(item_id):
+    item = Items.query.get_or_404(item_id)
+    if request.method == 'POST':
+        title = request.form["title"]
+        location = request.form["location"]
+        description = request.form["description"]
+        quantity = request.form["quantity"]
+        error = ""
+        if title == "" or location == "":
+            error = "Please provide both a title and a location"
+            return render_template("edit_item.html", item=item, error=error)
+        else:
+            item.title = title
+            item.location = location
+            item.description = description
+            item.quantity = quantity
+            db.session.commit()
+            return redirect(url_for('root'))
+    return render_template('edit_item.html', item=item, error="")
