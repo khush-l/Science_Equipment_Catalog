@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block bodycontent %}
+<h1>Search Results</h1>
+<div class="search-container">
+    <form class="search-form" action="{{ url_for('search') }}" method="GET">
+        <input type="text" name="query" placeholder="Search for items" required>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="itemList">
+    {% if items %}
+        {% for index, item, is_even in items %}
+        <div class="item {% if is_even %}even{% else %}odd{% endif %} {% if index == 0 %}firstItem{% endif %} {% if index == items|length-1 %}lastItem{% endif %}">
+            <div class="itemName">{{ item.title }}</div>
+            <div class="description">{{ item.description }}</div>
+            <div class="quantity">{{ item.quantity }}</div>
+            <div class="location">{{ item.location }}</div>
+            <div class="lastEdit">Last Edited: {{ item.last_updated }}</div>
+            <a href="{{ url_for('edit_item', item_id=item.id) }}"><img src="../imgs/editIcon.png" alt="Edit"></a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No items found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,19 +1,13 @@
-
-import os
-import flask
-from flask import Flask, render_template, request, url_for, redirect
-import logging
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
-from sqlalchemy import desc
+import os
 import datetime
-
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-        'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -23,20 +17,15 @@ class Items(db.Model):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=True)
     location = db.Column(db.String(20), nullable=False)
-    last_updated = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
-    quantity = db.Column(db.Integer, nullable = True)
+    last_updated = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    quantity = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         return f'<Items {self.title}>'
-#function is used if there is an error in form data to go back to update it
-def update_post(title = "", location = "", description = "", quantity = "", error = ""):
-    return render_template("add_edit.html", ae_title=title, ae_location=location, ae_description = description, ae_quantity = quantity, ae_error=error)
 
 @app.route('/', methods=["GET", "POST"])
 def root():
-    method = request.method
-    if method == "GET":
+    if request.method == "GET":
         items = Items.query.all()
         processed_items = [(index, item, index % 2 == 0) for index, item in enumerate(items, start=0)]
         return render_template('home.html', items=processed_items)
@@ -48,14 +37,13 @@ def root():
         error = ""
         if title == "" or location == "":
             error = "Please provide both a title and a location"
-            return(update_post(title=title,location=location,description=description, quantity=quantity,error=error))
+            return render_template("add_item.html", error=error)
         else:
             last_updated = datetime.datetime.now().replace(microsecond=0).isoformat(' ')
-            insert = (title,description,location,last_updated,quantity)
-            #need to still add the item
-            items = Items.query.all()
-            return render_template('home.html', items=items)
-      
+            new_item = Items(title=title, description=description, location=location, last_updated=last_updated, quantity=quantity)
+            db.session.add(new_item)
+            db.session.commit()
+            return redirect(url_for('root'))
 
 @app.route('/add_item', methods=["GET", "POST"])
 def add_item():
@@ -96,3 +84,17 @@ def edit_item(item_id):
             db.session.commit()
             return redirect(url_for('root'))
     return render_template('edit_item.html', item=item, error="")
+
+@app.route('/search', methods=["GET"])
+def search():
+    query = request.args.get('query')
+    results = Items.query.filter(
+        Items.title.contains(query) | 
+        Items.description.contains(query) | 
+        Items.location.contains(query)
+    ).all()
+    processed_items = [(index, item, index % 2 == 0) for index, item in enumerate(results, start=0)]
+    return render_template('search_results.html', items=processed_items)
+
+if __name__ == "__main__":
+    app.run(debug=True)
