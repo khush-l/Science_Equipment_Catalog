@@ -1,5 +1,7 @@
 # Science Equipment Catalogue
 
+<img width="979" alt="Screenshot 2024-08-10 at 12 27 45 AM" src="https://github.com/user-attachments/assets/7f3f9113-aa5b-4c13-92ea-5bcc1412a87d">
+
 ## Overview
 
 This project is a catalogue of various science tools and equipment designed for the LASA science wing. The primary goal is to help science teachers keep track of items, including their location, quantity, description, and last updated time. Teachers can also edit or add items.
